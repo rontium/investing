@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Osakesalkun seuranta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<style>
+
+body {
+  background: url("/tausta.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  
+}
+
+</style>
+</head>
+<body>
+
+    <div class="container p-3 my-4 bg-dark text-white">
+
+        <div class="jumbotron text-center">
+            <h1 class="text-dark">OSAKESALKUN SEURANTA</h1>
+        </div>
+
+        <div class="container">
+
+            <table class="table table-dark table-striped table-hover">
+                <tbody>
+                    <thead class="bg-dark text-info">
+                        <th>osake</th>
+                        <th>kpl</th>
+                        <th>hankintahinta/kpl</th> 
+                        <th>hankintahinta/yhteensä</th> 
+                        <th>markkinahinta/kpl</th>
+                        <th>markkinahinta/yhteensä</th> 
+                        <th>tuotto</th>
+                        <th>tuotto-%</th>
+                    </thead>
+             
+                    <%for (i=0; i<data.length;i++){%>
+                    <% x =   muut[i].kpl * muut[i].hinta%>
+                    <% y =   muut[i].kpl * data[i]%>
+                    <% z =   y / x * 100%>
+                    <tr>
+                    <td><%=muut[i].symbol%></td> 
+                    <td><%=muut[i].kpl%></td>
+                    <td><%=muut[i].hinta.toFixed(2)%></td>
+                    <td><%=(muut[i].kpl * muut[i].hinta).toFixed(2)%></td>
+                    <td><%=data[i]%></td>
+                    <td><%=(muut[i].kpl * data[i]).toFixed(2)%></td>
+                    <td><%=(muut[i].kpl * data[i] - muut[i].kpl * muut[i].hinta).toFixed(2)%></td>
+                    <td><%=z.toFixed(2)%></td>
+                    </tr>
+                    <% }%>
+                
+                </tbody>
+            </table>
+            
+        </div>
+
+</body>
+</html>
